@@ -1,0 +1,113 @@
+3 0
+3 36
+1 MAN
+1 LVP
+1 ARS
+1 MAN Gallas
+1 LVP Beckham
+1 ARS Evra
+1 ARS Alonso
+1 ARS Henry
+1 ARS Kevin
+1 ARS Mata
+1 ARS Robert
+1 ARS Yorke
+1 ARS Weah
+1 ARS Terry
+1 ARS Owen
+1 ARS Ronaldo
+1 ARS Zola
+1 MAN Flo
+1 LVP Justin
+1 MAN Pink
+1 LVP Skil
+1 MAN Neville
+1 LVP Lampard
+1 MAN Panuki
+1 LVP Amaki
+1 MAN Hondo
+1 LVP Nivkov
+1 MAN Nikolas
+1 LVP Soap
+1 MAN Thyme
+1 LVP Mussle
+1 MAN Kajin
+1 LVP Djiin
+1 MAN Messi
+1 LVP McCree
+1 MAN Mater
+1 LVP York
+1 MAN Bell
+1 LVP Billy
+1 ARS Ikky
+1 ARS Wonk
+1 ARS Sheldo
+1 ARS Leon
+1 ARS Howard
+1 ARS Raj
+1 ARS Kenny
+1 ARS Kyle
+1 MAN CR7
+1 MAN Boyle
+1 MAN Velt
+1 MAN Wolfram
+1 MAN Nelson
+1 MAN Rodney
+1 MAN Sprite
+1 MAN Hood
+1 LVP Duke
+1 LVP Shori
+1 LVP Kuro
+1 LVP Sora
+1 LVP Yamaki
+1 LVP Shorke
+1 LVP Sulfolk
+1 LVP Norfolk
+2 13
+1 MUN
+0 ARS
+1 MUN Sputnik
+1 MUN Sander
+1 MUN Adam
+1 MUN Weasel
+1 MUN Brooke
+1 MUN Tyler
+1 MUN Daniel
+1 MUN Frank
+1 MUN Heckler
+1 MUN Bob
+1 MUN Alice
+1 MUN Fred
+1 MUN Greg
+1 MUN Dean
+1 MUN Timberblake
+1 MUN Beyonce
+1 MUN Tom
+1 MUN Jim
+1 MUN Hart
+1 MUN Muffin
+0 LVP Djiin
+2 15
+1 BAR
+0 MAN
+1 BAR Brooklyn
+1 BAR Carolina
+1 BAR Washington
+1 BAR Houston
+1 BAR California
+1 BAR Nevada
+1 BAR Gridley
+1 BAR Exeter
+1 BAR Ajax
+1 BAR Glatea
+1 BAR Chester
+1 BAR Airan
+1 BAR Sheran
+1 BAR Winston
+1 BAR Boston
+1 BAR London
+1 BAR Michael
+1 BAR Gabriel
+1 BAR Mael
+1 BAR Melios
+0 MUN Jim
