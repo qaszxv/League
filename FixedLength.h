@@ -62,13 +62,13 @@ class FixLengthList {
         string getIndex(string str)
         {
             string res="";
-            if(str.at(1)=='-' && str.at(2)=='1'){
+            if (str.at(1)=='-' && str.at(2)=='1') {
                 res+=str.at(1);
                 res+=str.at(2);
             }
-            if(isdigit(str.at(1))){
+            if (isdigit(str.at(1))) {
                 res+=str.at(1);
-                if(isdigit(str.at(2)))
+                if (isdigit(str.at(2)))
                     res+=str.at(2);
             }
             return res;

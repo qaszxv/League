@@ -24,6 +24,7 @@ static void updatePlayerFirstFit(std::string &line, map<std::string, PlayerList>
         playersInClub[clubName].addRecordFF(playerName);
     else playersInClub[clubName].deleteRecord(playerName);
 }
+
 //Best Fit
 static void updatePlayerBestFit(std::string &line, map<std::string, PlayerList> &playersInClub) {
     string clubName = line.substr(2, 3);
@@ -65,7 +66,7 @@ void readFile(string fileName, FixLengthList &club, map<string, PlayerList> &pla
         
         while (getline(inFile, line)) {
             //Update club participant
-            if (line.length() == 5 && (line[2] < '0' || line[2] > '9')) { //check for club transaction line
+            if (line.length() == 5 && (line[2] < '0' || line[2] > '9')) { //Check for club transaction line
                 string clubName = line.substr(1, line.length()-1);
                 playersInClub[clubName];
                 updateClubInSeason(club, line);
