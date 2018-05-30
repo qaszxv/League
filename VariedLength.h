@@ -1,22 +1,14 @@
-//
-//  main.cpp
-//  BigASS
-//
-//  Created by ngoChu on 5/29/18.
-//  Copyright © 2018 Ngoc. All rights reserved.
-//
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 using namespace std;
 
-//store a player info
+//Store a player info
 struct playerInfo {
     string name;
-    int index;              //beginning index of the player in the list
-    int lastDeletedPlayer; //store the last deleted player's index
+    int index;              //Beginning index of the player in the list
+    int lastDeletedPlayer;  //Store the last deleted player's index
     playerInfo* next;
     
     playerInfo() {
@@ -33,12 +25,12 @@ struct playerInfo {
     }
 };
 
-//store player list of a team
+//Store player list of a team
 class PlayerList {
 public:
     playerInfo* head = NULL;
 public:
-    //init head with index & last deleted = -1
+    //Init head with index & last deleted = -1
     PlayerList(){
         head = new playerInfo("", -1, -1);
     }
@@ -52,7 +44,7 @@ public:
         curr->next = newPlayer;
     }
     
-    //store context of the list
+    //Store context of the list
     string listContext() {
         string context;
         playerInfo* curr= head;
@@ -69,7 +61,7 @@ public:
         cout<< listContext() << endl;
     }
     
-    //return the last deleted player rite b4 curr
+    //Return the last deleted player rite b4 curr
     playerInfo* toLastDeletedPlayer(playerInfo* curr) {
         int lastDeletedIndex = curr->lastDeletedPlayer;
         curr = head;
@@ -80,7 +72,7 @@ public:
         return curr;
     }
     
-    //update the pointers which point to deleted nodes
+    //Update the pointers which point to deleted nodes
     void updateDeletedPointers(playerInfo* curr) {
         int lastDeletedIndex = curr->lastDeletedPlayer;
         playerInfo* prev = head;
@@ -90,7 +82,7 @@ public:
         prev->lastDeletedPlayer = lastDeletedIndex;
     }
     
-    //insert a new player into the list
+    //Insert a new player into the list
     void recursiveInsert(string newName, playerInfo* curr) {
         if(curr->name.length() >= newName.length()){
             for(int i=(int)newName.size(); i<curr->name.length(); i++)
@@ -103,7 +95,7 @@ public:
         recursiveInsert(newName, toLastDeletedPlayer(curr));
     }
     
-    //check if new player have a long name -> add tail
+    //Check if new player have a long name -> add tail
     bool isNewPlayerReplaceDeletedPos(string name, playerInfo* curr) {
         while (curr != NULL) {
             if (curr->name.find('*') != std::string::npos && curr->name.length() >= name.length())
@@ -113,7 +105,7 @@ public:
         return false;
     }
     
-    //add a new record First Fit
+    //Add a new record First Fit
     void addRecordFF(string str) {
         playerInfo* newNode = new playerInfo(str, 1, 0);
         
@@ -133,21 +125,18 @@ public:
         }
     }
 
-    vector<pair<int, int>> listDeletedRecord(string str)
-    {
+    vector<pair<int, int>> listDeletedRecord(string str) {
         int posCurr = 0;
         playerInfo*curr = head;
         int ptrDelete = curr->lastDeletedPlayer;
         vector<pair<int, int>> deletedRecord;
-        while (ptrDelete != -1)
-        {
-            //move to the pointerDele position
-            while (posCurr < ptrDelete)
-            {
+        while (ptrDelete != -1) {
+            //Move to the pointerDele position
+            while (posCurr < ptrDelete) {
                 curr = curr->next;
                 posCurr = curr->index;
             }
-            //add data of the record to vector. Then continue
+            //Add data of the record to vector. Then continue
             deletedRecord.push_back(pair<int, int>(curr->index, curr->name.length() - str.length()));
             ptrDelete = curr->lastDeletedPlayer;
             posCurr = 0;
@@ -156,12 +145,11 @@ public:
         return deletedRecord;
     }
     
-    vector<int> minRemainSizeRecord(vector<pair<int, int>> listRe)
-    {
-        int minDeleted[] = { 0,totalFileSize() };// store a record of smallest remaing size -> minDeleted{index, remaining size}
+    vector<int> minRemainSizeRecord(vector<pair<int, int>> listRe) {
+        //Store a record of smallest remaing size -> minDeleted{index, remaining size}
+        int minDeleted[] = { 0,totalFileSize() }; 
         int prevRecordIndex = 0;
-        for (int i = 0; i < listRe.size(); i++)
-        {
+        for (int i = 0; i < listRe.size(); i++) {
             if (listRe[i].second >= 0 && listRe[i].second < minDeleted[1])
             {
                 minDeleted[0] = listRe[i].first;
@@ -175,15 +163,12 @@ public:
         result.push_back(minDeleted[1]);
         result.push_back(prevRecordIndex);
         return result;
-        
     }
     
-    int totalFileSize()
-    {
+    int totalFileSize() {
         playerInfo*curr = head;
         int size = 0;
-        while (curr)
-        {
+        while (curr) {
             size += curr->index;
             curr = curr->next;
         }
@@ -191,8 +176,7 @@ public:
     }
     
     //add a new record Best Fit
-    void addRecordBF(string str)
-    {
+    void addRecordBF(string str) {
         playerInfo* newNode = new playerInfo(str, 1, 0);
         playerInfo*curr = head;
         
@@ -202,8 +186,7 @@ public:
         else {
             if (curr->lastDeletedPlayer == -1)
                 addTail(newNode);
-            else
-            {
+            else {
                 int prevRecordIndex = 0;//store a index of prev-replacing record
                 int posCurr = 0;
                 //find record with smallest "remaining size" //if available, store it.
@@ -211,18 +194,16 @@ public:
                 
                 if (minRecord[1] == totalFileSize())//if there is no available place for the string
                     addTail(newNode);
-                else
-                {
-                    //add Record
-                    while (posCurr < minRecord[0])
-                    {
+                else {
+                    //Add Record
+                    while (posCurr < minRecord[0]) {
                         curr = curr->next;
                         posCurr = curr->index;
                     }
                     for (int i = 0; i < curr->name.length(); i++)
                         curr->name[i] = (i < str.length()) ? str[i] : '.';
                     
-                    //update Deleted Pointer
+                    //Update Deleted Pointer
                     updateDeletedPointers(curr);
                     curr->lastDeletedPlayer = NULL;
                 }
@@ -230,13 +211,12 @@ public:
         }
     }
 
-    //delete a record by player name
+    //Delete a record by player name
     void deleteRecord(string str) {
         playerInfo* curr = head;
         if (!curr)
             cout<< "Empty"<< endl;
-        else
-        {
+        else {
             while(curr) {
                 if(curr->name == (str)) {
                     curr->name = str.replace(0, head->name.size() + 1, head->name + "*");
@@ -275,8 +255,7 @@ public:
     
 
     
-    void writeFile(string fileName)
-    {
+    void writeFile(string fileName) {
         string line, context;
         ofstream outFile;
         outFile.open(fileName);
@@ -284,7 +263,7 @@ public:
         outFile.close();
     }
     
-    //clone a file by season
+    //Clone a file by season
     void clone(string fileName, int season) {\
         ifstream src;
         ofstream dst;
@@ -294,7 +273,7 @@ public:
         dst << src.rdbuf();
     }
     
-    //testing purpose
+    //Testing purpose
     void readFile(string fileName)
     {
         ifstream infile;
